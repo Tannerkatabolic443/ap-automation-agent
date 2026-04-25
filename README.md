@@ -1,7 +1,5 @@
 # AP-AI: Enterprise Accounts Payable Automation Agent
 
-**Built by [Datawebify](https://datawebify.com) | Live Demo: [ap.datawebify.com/docx-ui](https://ap.datawebify.com/docx-ui)**
-
 ---
 
 ## What This System Does
@@ -26,21 +24,6 @@ The system also includes a DOCX Document Standardization module that automatical
 | Document standardization time | 2 to 4 hrs per doc (manual) | Under 60 seconds | 99% faster |
 
 ---
-
-## Live Demos
-
-| Feature | Live URL |
-|---|---|
-| Document Standardizer UI | [ap.datawebify.com/docx-ui](https://ap.datawebify.com/docx-ui) |
-| Order Extraction Demo | [ap.datawebify.com/orders/demo](https://ap.datawebify.com/orders/demo) |
-| Schedule Extractor UI | [ap.datawebify.com/upload](https://ap.datawebify.com/upload) |
-| Interactive API Docs | [ap.datawebify.com/docs](https://ap.datawebify.com/docs) |
-| System Health | [ap.datawebify.com/metrics/health](https://ap.datawebify.com/metrics/health) |
-| Real-time AP Metrics | [ap.datawebify.com/metrics](https://ap.datawebify.com/metrics) |
-
----
-
-## Live Endpoints
 
 ### AP Automation
 
@@ -244,7 +227,7 @@ AgAI_10_AP_Automation_Agent/
 ### Local Setup
 
 ```bash
-git clone https://github.com/umair801/ap-automation-agent.git
+git clone https://github.com/fvmuzik00/ap-automation-agent.git
 cd ap-automation-agent
 python -m venv venv
 venv\Scripts\activate  # Windows
@@ -294,12 +277,3 @@ docker run -p 8000:8000 --env-file .env ap-ai-agent
 Finance directors, CFOs, and AP managers at mid-to-large companies processing 500+ invoices per month. Document automation clients include compliance teams, legal departments, and operations managers standardizing SOPs, policies, and regulatory documents at scale.
 
 ---
-
-## About Datawebify
-
-Datawebify builds enterprise-grade agentic AI systems for organizations that require production-ready automation at scale.
-
-Website: [datawebify.com](https://datawebify.com)
-GitHub: [github.com/umair801](https://github.com/umair801)
-Document Standardizer: [ap.datawebify.com/docx-ui](https://ap.datawebify.com/docx-ui)
-API Docs: [ap.datawebify.com/docs](https://ap.datawebify.com/docs)
